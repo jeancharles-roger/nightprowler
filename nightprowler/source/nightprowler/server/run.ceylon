@@ -12,9 +12,7 @@ shared class User(name)
 {
 	doc "User name"
 	shared String name;
-	
 }
-
 
 doc "User name id in HTML form."
 String usernameFormId = "username";
@@ -36,151 +34,143 @@ User getUser(Request request) {
 	return user;
 }
 
-Boolean isLogin(Request request) {
-	value username = request.parameter(usernameFormId);
-	if ( username exists ) { 
-		print("-> IsLogin: username exists.");
-	} else {
-		print("-> IsLogin: username DOESN'T exist.");
-	}
+String head = 
+"
+	<head>
+	    <meta charset='utf-8'>
+	    <title>Gestion de personnages Nightprowler</title>
+	    <link rel='stylesheet' type='text/css' href='css/main.css'>
+	</head>
+";
+
+String htmlStart = 
+"<html>
+ `` head `` 
+ <body>
+"
+;
+String htmlEnd= 
+"
+ </body>
+ </html>
+";
+
+
+String notLoggedHeader= 
+"
+	<!-- header -->
+	<div id='header'>
+	    <a id='title' href='index.html'>Nightprowler</a>
+
+		<form id='login' action='login.html' method='post' >
+            <input id='username' type='text'     name='``usernameFormId``' autofocus required>   
+            <input id='password' type='password' name='``passwordFormId``' required>
+            <input id='submit' type='submit' value='Se connecter'>
+		</form>
+	</div>
+";
+
+
+String loggedHeader(User user) {
+	return
+"
+     <!-- header -->
+    <div id='header'>
+        <a id='title' href='index.html'>Nightprowler</a>
+
+     	<form id='login' action='logout.html' >
+        	Connecté en tant que '`` user.name ``'. 
+        	<input id='submit'   type='submit'  value='Se déconnecter'>
+    	</form>
+    </div>
+";
+}
+
+String menu = 
+"
+ 	<!-- menu -->
+	<div id='menu'>
+	    <a href='tables.html' id='menu-tables' class='menu-item'>Tables</a>
+	    <a href='profil.html' id='menu-profil' class='menu-item'>Profil</a>
+	</div>
+";
+
+String content(String content) {
 	return 
-		username exists && 
-		request.parameter(passwordFormId) exists;
-}
-
-String notLoggedPage() {
- 	return
 "
-    <html>
-    <head>
-        <meta charset='utf-8'>
-        <title>Gestion de personnages Nightprowler</title>
-        <link rel='stylesheet' type='text/css' href='css/main.css'>
-    </head>
-    <body>
-        <!-- header -->
-        <div id='header'>
-            <a id='title' href='index.html'>Nightprowler</a>
-
-           <form id='login' action='login.html' method='post' >
-                <input id='username' type='text'     name='``usernameFormId``' autofocus required>   
-                <input id='password' type='password' name='``passwordFormId``' required>
-                <input id='submit' type='submit' value='Se connecter'>
-            </form>
-        </div>
-
-        <!-- menu -->
-        <div id='menu'>
-            <a href='tables.html' id='menu-tables' class='menu-item'>Tables</a>
-            <a href='profil.html' id='menu-profil' class='menu-item'>Profil</a>
-        </div>
-
-        <!-- content -->
-        <div id='content'>
-            Bienvenue dans Nightprowler.
-        </div>
-
-        <!-- footers -->
-        <div id='footer'>
-        Gestion de personnages Nighprowler.
-        </div>
-    </body>
-    </html>
-";
-}
- 
- 
-String mainPage(User user) {
- 	return
-"
-    <html>
-    <head>
-        <meta charset='utf-8'>
-        <title>Gestion de personnages Nightprowler</title>
-        <link rel='stylesheet' type='text/css' href='css/main.css'>
-    </head>
-    <body>
-        <!-- header -->
-        <div id='header'>
-            <a id='title' href='index.html'>Nightprowler</a>
-
-         	<div id='login'>
-            	Connecté en tant que 'Jean-Charles'. 
-            	<input id='submit'   type='submit'   value='Se déconnecter'>
-        	</div>
-        </div>
-
-        <!-- menu -->
-        <div id='menu'>
-            <a href='tables.html' id='menu-tables' class='menu-item'>Tables</a>
-            <a href='profil.html' id='menu-profil' class='menu-item'>Profil</a>
-        </div>
-
-        <!-- content -->
-        <div id='content'>
-            Bienvenue dans Nightprowler `` user.name ``.
-        </div>
-
-        <!-- footers -->
-        <div id='footer'>
-        Gestion de personnages Nighprowler.
-        </div>
-
-        <!-- Scripts -->
-        <script src='jquery-ui-1.10.2/js/jquery-1.9.1.js'></script>
-        <script>
-        $( document ).ready(function() {
-            // TODO
-        });
-        </script>
-    </body>
-    </html>
+ 	<!-- content -->
+	<div id='content'>
+	`` content ``
+	</div>
 ";
 }
 
-String doLoginPage(Request request) {
-	print("[doLoginPage]");
-	print("Method: " + request.method);
-	print(request.parameters(usernameFormId));
-	print(request.parameter(usernameFormId));
- 	return
+String footer = 
 "
-    <html>
-    <head>
-        <meta charset='utf-8'>
-        <title>Gestion de personnages Nightprowler</title>
-        <link rel='stylesheet' type='text/css' href='css/main.css'>
-    </head>
-    <body>
-        <!-- header -->
-        <div id='header'>
-            <a id='title' href='index.html'>Nightprowler</a>
+ 	<!-- footers -->
+	<div id='footer'>
+	Gestion de personnages Nighprowler.
+	</div>
+";
 
-           <form id='login'>
-                <input id='username' type='text'     name='``usernameFormId``' autofocus required>   
-                <input id='password' type='password' name='``usernameFormId``' required>
-                <input id='submit'   type='submit'   value='Se connecter'>
-            </form>
-        </div>
+String script = 
+"
+ 	<!-- Scripts -->
+	<script src='jquery-ui-1.10.2/js/jquery-1.9.1.js'></script>
+	<script>
+	$( document ).ready(function() {
+	    // TODO
+	});
+	</script>
+";
 
-        <!-- menu -->
-        <div id='menu'>
-            <a href='tables.html' id='menu-tables' class='menu-item'>Tables</a>
-            <a href='profil.html' id='menu-profil' class='menu-item'>Profil</a>
-        </div>
+String notLoggedPage(String innerHtml) {
+ 	return 
+ 		htmlStart + 
+ 		notLoggedHeader + menu +
+ 		content(innerHtml) +
+ 		footer + 
+ 		script +
+ 		htmlEnd;
+}
+ 
+ 
+String loggedPage(User user, String innerHtml) {
+ 	return
+		htmlStart + 
+ 		loggedHeader(user) + menu +
+ 		content(innerHtml) +
+ 		footer +
+ 		script +
+ 		htmlEnd;
+}
 
-        <!-- content -->
-        <div id='content'>
-            <h2>La connection a échoué, essayez encore.</h2>
-        </div>
 
-        <!-- footers -->
-        <div id='footer'>
-        Gestion de personnages Nighprowler.
-        </div>
-    </body>
-    </html>
-";	
+Boolean checkUserAndPassword(String user, String password) {
+	// TODO creates real user/pwd check
+	return user == password;
+}
+
+String loginPage(Request request) {
+	value username = request.parameter(usernameFormId);
+	value password = request.parameter(passwordFormId);
+	if ( exists username, exists password ) {
+		if ( checkUserAndPassword(username, password) ) {
+			// creates user and registers to session
+			value user = User(username);
+			request.session.put(userSessionId, user);
+			return loggedPage(user, "Bienvenue '`` username ``'");
+		} else {
+			return notLoggedPage("Login ou mot de passe incorrect, ré-essayez.");
+		}
+	} else {
+		return notLoggedPage("Connectez vous en utilisant le formulaire de connection.");
+ 	}
+ } 
+
+String logoutPage(Request request) {
+	request.session.remove(userSessionId);
+	return notLoggedPage("Vous êtes déconnecté.");
 }
 
 void runServer() {
@@ -189,29 +179,29 @@ void runServer() {
         AsynchronousEndpoint {
             path = isRoot().or( startsWith("/index.html") );
             void service(Request request, Response response, Callable<Anything, []> complete) {
-                print("------------------------------");
-                print("Root request: " + request.path);
                 if ( isLogged(request) ) {
-                    print("* Logged");
-                    response.writeString(mainPage(getUser(request)));
-                } else if ( isLogin(request)) {
-                    print("* Login");
-                    response.writeString(doLoginPage(request));
+                    value user = getUser(request);
+                    response.writeString(
+                    	loggedPage(user, "Bienvenue dans Nightprowler `` user.name ``")
+                    );
                 } else {
-                    print("* Not logged");
-                    response.writeString(notLoggedPage());
+                    response.writeString(notLoggedPage("Bienvenue dans Nightprowler."));
                 }
-                complete(); //async response complete
+                complete();
             }
         },
         AsynchronousEndpoint {
             path = startsWith("/login.html");
             void service(Request request, Response response, Callable<Anything, []> complete) {
-                print("------------------------------");
-                print("Login request: " + request.path);
-                print("* Login");
-                response.writeString(doLoginPage(request));
-                complete(); //async response complete
+                response.writeString(loginPage(request));
+                complete();
+            }
+        },
+        AsynchronousEndpoint {
+            path = startsWith("/logout.html");
+            void service(Request request, Response response, Callable<Anything, []> complete) {
+                response.writeString(logoutPage(request));
+                complete();
             }
         },
         AsynchronousEndpoint {
