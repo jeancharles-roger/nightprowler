@@ -1,18 +1,14 @@
-
 import ceylon.net.http.server { 
 	createServer, 
 	AsynchronousEndpoint, Response, Request, 
 	startsWith, isRoot
 }
 
-import ceylon.net.http.server.endpoints { serveStaticFile }
- 
-doc "State of the current session"
-shared class User(name) 
-{
-	doc "User name"
-	shared String name;
-}
+import ceylon.file { Path, File, parsePath }
+import ceylon.io { newOpenFile }
+import ceylon.io.buffer { ByteBuffer, newByteBuffer }
+import ceylon.net.http { contentType, contentLength }
+
 
 doc "User name id in HTML form."
 String usernameFormId = "username";
@@ -20,146 +16,43 @@ doc "Password id in HTML form."
 String passwordFormId = "password";
   
 doc "User key in session store."
-String userSessionId = "user"; 
+String playerSessionId = "player"; 
+
  
 doc "Checks if a user is logged."
 Boolean isLogged(Request request) {
-	return request.session.defines(userSessionId);
+	return request.session.defines(playerSessionId);
 } 
 
 doc "Gets user from request, user must be logged."
-User getUser(Request request) {
-	value user = request.session.get(userSessionId);
-	assert (is User user);
+Player getUser(Request request) {
+	value user = request.session.get(playerSessionId);
+	assert (is Player user);
 	return user;
 }
 
-String head = 
-"
-	<head>
-	    <meta charset='utf-8'>
-	    <title>Gestion de personnages Nightprowler</title>
-	    <link rel='stylesheet' type='text/css' href='css/main.css'>
-	</head>
-";
-
-String htmlStart = 
-"<html>
- `` head `` 
- <body>
-"
-;
-String htmlEnd= 
-"
- </body>
- </html>
-";
-
-
-String notLoggedHeader= 
-"
-	<!-- header -->
-	<div id='header'>
-	    <a id='title' href='index.html'>Nightprowler</a>
-
-		<form id='login' action='login.html' method='post' >
-            <input id='username' type='text'     name='``usernameFormId``' autofocus required>   
-            <input id='password' type='password' name='``passwordFormId``' required>
-            <input id='submit' type='submit' value='Se connecter'>
-		</form>
-	</div>
-";
-
-
-String loggedHeader(User user) {
-	return
-"
-     <!-- header -->
-    <div id='header'>
-        <a id='title' href='index.html'>Nightprowler</a>
-
-     	<form id='login' action='logout.html' >
-        	Connecté en tant que '`` user.name ``'. 
-        	<input id='submit'   type='submit'  value='Se déconnecter'>
-    	</form>
-    </div>
-";
+Player? findPlayer(String login) {
+    for (player in data.players ) {
+        if (player.login == login ) {
+            return player;
+        }
+    }
+    return null;
 }
 
-String menu = 
-"
- 	<!-- menu -->
-	<div id='menu'>
-	    <a href='tables.html' id='menu-tables' class='menu-item'>Tables</a>
-	    <a href='profil.html' id='menu-profil' class='menu-item'>Profil</a>
-	</div>
-";
-
-String content(String content) {
-	return 
-"
- 	<!-- content -->
-	<div id='content'>
-	`` content ``
-	</div>
-";
-}
-
-String footer = 
-"
- 	<!-- footers -->
-	<div id='footer'>
-	Gestion de personnages Nighprowler.
-	</div>
-";
-
-String script = 
-"
- 	<!-- Scripts -->
-	<script src='jquery-ui-1.10.2/js/jquery-1.9.1.js'></script>
-	<script>
-	$( document ).ready(function() {
-	    // TODO
-	});
-	</script>
-";
-
-String notLoggedPage(String innerHtml) {
- 	return 
- 		htmlStart + 
- 		notLoggedHeader + menu +
- 		content(innerHtml) +
- 		footer + 
- 		script +
- 		htmlEnd;
-}
- 
- 
-String loggedPage(User user, String innerHtml) {
- 	return
-		htmlStart + 
- 		loggedHeader(user) + menu +
- 		content(innerHtml) +
- 		footer +
- 		script +
- 		htmlEnd;
-}
-
-
-Boolean checkUserAndPassword(String user, String password) {
-	// TODO creates real user/pwd check
-	return user == password;
+Boolean checkPassword(Player player, String password) {
+    return player.password == password;
 }
 
 String loginPage(Request request) {
 	value username = request.parameter(usernameFormId);
 	value password = request.parameter(passwordFormId);
 	if ( exists username, exists password ) {
-		if ( checkUserAndPassword(username, password) ) {
-			// creates user and registers to session
-			value user = User(username);
-			request.session.put(userSessionId, user);
-			return loggedPage(user, "Bienvenue '`` username ``'");
+        Player? player = findPlayer(username);
+		if ( exists player, checkPassword(player, password) ) {
+            // registers player to session
+            request.session.put(playerSessionId, player);
+            return rootLoggedPage(player);
 		} else {
 			return notLoggedPage("Login ou mot de passe incorrect, ré-essayez.");
 		}
@@ -169,9 +62,48 @@ String loginPage(Request request) {
  } 
 
 String logoutPage(Request request) {
-	request.session.remove(userSessionId);
+	request.session.remove(playerSessionId);
 	return notLoggedPage("Vous êtes déconnecté.");
 }
+
+
+String rootLoggedPage(Player player) {
+    value innerHtml = playerDescription(player);
+    return loggedPage(player, innerHtml);
+}
+
+String rootNotLoggedPage() {
+    return notLoggedPage("Bienvenue dans Nightprowler.");
+}
+
+doc "EndPoint that serves static files."
+AsynchronousEndpoint serveStaticFileEndPoint(String requestPrefix, String serverPrefix) {
+    return  AsynchronousEndpoint {
+        path = startsWith(requestPrefix);
+        void service(Request request, Response response, Callable<Anything, []> complete) {
+            Path filePath = parsePath(serverPrefix + request.relativePath);
+            if (is File file = filePath.resource) {
+                value openFile = newOpenFile(file);
+                try {
+                    Integer available = file.size;
+                    response.addHeader(contentLength(available.string));
+                    if (is String cntType = file.contentType) {
+                        response.addHeader(contentType(cntType));
+                    }
+                    ByteBuffer buffer = newByteBuffer(available);
+                    openFile.read(buffer);
+                    response.writeBytes(buffer.bytes());
+                } finally {
+                    openFile.close();
+                }
+            } else {
+                response.responseStatus=404;
+            }
+            complete();
+        }
+    };
+}
+
 
 void runServer() {
     //create a HTTP server
@@ -180,12 +112,10 @@ void runServer() {
             path = isRoot().or( startsWith("/index.html") );
             void service(Request request, Response response, Callable<Anything, []> complete) {
                 if ( isLogged(request) ) {
-                    value user = getUser(request);
-                    response.writeString(
-                    	loggedPage(user, "Bienvenue dans Nightprowler `` user.name ``")
-                    );
+                    value player = getUser(request);
+                    response.writeString(rootLoggedPage(player));
                 } else {
-                    response.writeString(notLoggedPage("Bienvenue dans Nightprowler."));
+                    response.writeString(rootNotLoggedPage());
                 }
                 complete();
             }
@@ -204,11 +134,7 @@ void runServer() {
                 complete();
             }
         },
-        AsynchronousEndpoint {
-            path = startsWith("");
-            service = serveStaticFile("./html");
-        }
-
+        serveStaticFileEndPoint("/files/", "./html/")
     };
     
     // starts with default values
@@ -219,3 +145,4 @@ doc "Run the module `nightprowler.server`."
 void run() {
 	runServer();
 }
+
