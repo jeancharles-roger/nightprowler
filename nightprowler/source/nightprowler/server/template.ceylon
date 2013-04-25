@@ -1,3 +1,6 @@
+import nightprowler.common {
+	Character, Player
+}
 
 String head = 
 "
@@ -149,7 +152,7 @@ shared String htmlCharactersList({Character*} characters) {
 		"<h3>Personnages:</h3>
 		 <ul>
 		" +
-		join({ for (character in characters) "<li>" + htmlCharacter(character) + "</li>\n"}) +
+		"".join({ for (character in characters) "<li>" + htmlCharacter(character) + "</li>\n"}) +
 		"</ul>
 		";
 }

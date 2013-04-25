@@ -3,7 +3,7 @@ doc "Type alias containing all model types."
 shared alias ModelType => NotPlayedCharacter|Character|Table|Player; 
 
 doc "Represents a player. It posseses Characters."
-shared class Player(name, login, password, characters={}, masteredTables={}) {
+shared class Player(name, login, password, salt = "", characters={}, masteredTables={}) {
 	
 	doc "Player's name."
 	shared String name;
@@ -18,33 +18,48 @@ shared class Player(name, login, password, characters={}, masteredTables={}) {
 	shared String login;
 
 	doc "Salt used to hash password, not used yet."
-	shared String salt = "";
+	shared String salt;
 
 	doc "Password (hashed)"
 	shared String password;	
+
+	doc "Decription string."
+	shared actual String string = "[Player] " + login + ", " + name;
 }
 
 doc "Represents a table, a group of Characters in a same game. A table is moderated by the master."
-shared class Table(name, characters={}, npcs={}) {
+shared class Table(master, name, characters={}, npcs={}) {
 	
-	doc "The master player."
-	shared late Player master;
+	doc "The master's player login."
+	shared String master;
 
 	doc "The table name."
 	shared String name;
 	
 	doc "The player's characters played in the table." 
-	shared variable {Character*} characters;
+	shared variable {String*} characters;
 
 	doc "The non player characters for table."
 	shared variable {NotPlayedCharacter*} npcs;
+
+	doc "Decription string."
+	shared actual String string = "[Table] " + name + ", mastered by " + master;
 }
 
 shared class NotPlayedCharacter(name) {
 	shared String name;
+
+	doc "Decription string."
+	shared actual String string = "[Npc] " + name;
 }
 
-shared class Character(name){	
+shared class Character(player, name){	
+	doc "The player's login."
+	shared String player;
+
 	shared String name;
-	shared late Player player;
+
+	doc "Decription string."
+	shared actual String string = "[Character] " + name + " to " + player;
+
 }

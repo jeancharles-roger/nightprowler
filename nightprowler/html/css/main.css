@@ -1,6 +1,6 @@
 * {
 	color: black;
-	background-color: white;
+	/*background-color: white;*/
 	text-decoration: none;
 }
 
@@ -76,4 +76,48 @@
     background-color: #EEEEEE;
 
 }
+
+.tab {
+    border-style: solid;
+    border-width: 2px;
+
+    display: table-row;
+}
+
+.tab .header {
+    height: 100%;
+    width: 150px;
+    /*padding: 5px 5px 5px 5px;*/
+
+    display: table-cell;
+}
+
+.tab .page {
+    background-color: #dddddd;
+    cursor: pointer;
+
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+
+}
+
+.tab .page.selected {
+    background-color: #ffffff;
+    border-right-style: none;
+}
+
+
+.tab .content {
+    display: table-cell;
+
+    padding: 5px 5px 5px 5px;
+}
+
 

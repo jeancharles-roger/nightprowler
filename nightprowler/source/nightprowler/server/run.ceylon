@@ -1,14 +1,18 @@
 import ceylon.net.http.server { 
 	createServer, 
 	AsynchronousEndpoint, Response, Request, 
-	startsWith, isRoot
+	startsWith, isRoot, Matcher
 }
 
 import ceylon.file { Path, File, parsePath }
 import ceylon.io { newOpenFile }
+import ceylon.io.charset { utf8 }
 import ceylon.io.buffer { ByteBuffer, newByteBuffer }
 import ceylon.net.http { contentType, contentLength }
 
+import nightprowler.common {
+    Character, Player, toJsonString
+}
 
 doc "User name id in HTML form."
 String usernameFormId = "username";
@@ -76,12 +80,26 @@ String rootNotLoggedPage() {
     return notLoggedPage("Bienvenue dans Nightprowler.");
 }
 
+doc "Matcher that searches for players login."
+object playerMatcher extends Matcher() {
+    shared actual Boolean matches(String path) {
+        value login = path.trimCharacters({'/'});
+        value player = findPlayer(login);
+        if (exists player) { return true; } else { return false; }
+    }
+    
+    shared actual String relativePath(String requestPath) {
+        return requestPath;
+    }
+}
+
 doc "EndPoint that serves static files."
 AsynchronousEndpoint serveStaticFileEndPoint(String requestPrefix, String serverPrefix) {
     return  AsynchronousEndpoint {
         path = startsWith(requestPrefix);
         void service(Request request, Response response, Callable<Anything, []> complete) {
             Path filePath = parsePath(serverPrefix + request.relativePath);
+            print ("Serving '"+ request.path +"' using '"+ filePath.string +"' on file system.");
             if (is File file = filePath.resource) {
                 value openFile = newOpenFile(file);
                 try {
@@ -134,7 +152,25 @@ void runServer() {
                 complete();
             }
         },
-        serveStaticFileEndPoint("/files/", "./html/")
+        AsynchronousEndpoint {
+            path = playerMatcher;
+            void service(Request request, Response response, Callable<Anything, []> complete) {
+                // TODO ensure login and rights.
+                value login = request.relativePath.trimCharacters({'/'});
+                value player = findPlayer(login);
+                if (exists player) {
+                    response.addHeader(contentType("application/json", utf8));
+                    //response.addHeader(contentType("text/html", utf8));
+                    response.writeString(toJsonString(player));
+                    response.writeString("\n");
+                } else {
+                    response.responseStatus=404;
+                }
+                complete();
+            }
+        },
+        serveStaticFileEndPoint("/files/", "./html/"),
+        serveStaticFileEndPoint("/modules/", "./modules/")
     };
     
     // starts with default values
