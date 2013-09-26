@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>Gestion de personnages Nightprowler</title>
+    <link rel='stylesheet' href='http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css' />
+	<script src='http://code.jquery.com/jquery-1.9.1.js'></script>
+ 	<script src='http://code.jquery.com/ui/1.10.2/jquery-ui.js'></script>
+ 	<link rel='stylesheet' type='text/css' href='files/css/main.css'>
+</head> 
+<body>
+<!-- header -->
+<div id='header'>
+    <a id='title' href='index.html'>Nightprowler</a>
+
+	<form id='login' action='/login.html' method='add' >
+           <input id='username' type='text'     name='username' autofocus required>   
+           <input id='password' type='password' name='password' required>
+           <input id='submit' type='submit' value='Se connecter'>
+	</form>
+</div>
+	<!-- menu -->
+<div id='menu'> 
+</div>
+	<!-- content -->
+<div id='content'>
+Bienvenue dans Nightprowler.
+</div>
+	<!-- footers -->
+<div id='footer'>
+Gestion de personnages Nighprowler.
+</div>
+	<!-- Scripts -->
+<script>
+$(function() {
+	$( '#tabs' ).tabs({
+	  beforeLoad: function( event, ui ) {
+	    ui.jqXHR.error(function() {
+	      ui.panel.html(
+	        'Couldn't load this tab. We'll try to fix this as soon as possible. ' +
+	        'If this wouldn't be a demo.'' );
+	    });
+	  }
+	});
+});
+
+$( document ).ready(function() {
+    // TODO
+});
+</script>
+</body>
+</html>
