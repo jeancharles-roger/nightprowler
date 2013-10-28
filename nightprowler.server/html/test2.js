@@ -31,10 +31,10 @@ function selectTab(event) {
   		if (this.status == 200) {
   			model = commonModule.fromJsonString(e.currentTarget.response);
   			content.innerHTML = "";
-  			clientModule.toHtml(model, content);
+        clientModule.toHtml(model, content);
 
   		} else {
-  			content.innerHTML = "<p>Cannot retreive '"+ url +"' ("+ this.status +").";
+  			content.innerHTML = "<p>Cannot retreive '"+ url +"' ("+ this.status +").</p>q";
   		}
   	};
   	xhr.send();
