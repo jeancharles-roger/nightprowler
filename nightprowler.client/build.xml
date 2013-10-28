@@ -1,0 +1,38 @@
+<project name="Compile nightprowler.client" default="all">
+	
+	<property name="ceylon.home" value="/Applications/Dev/Ceylon/ceylon-0.6.1/"/>
+	
+	<property name="ceylon.ant.lib" value="${ceylon.home}/lib/ceylon-ant.jar"/>
+	<property name="ceylon.executable" value="${ceylon.home}/bin/ceylon"/>
+
+	<property name="repo.dir" value="./modules"/>
+	<property name="user.repo.dir" value="${user.home}/.ceylon/repo"/>
+	<property name="html.dir" value="../nightprowler.server/html/modules"/>
+
+	
+	<path id="ant-tasks">
+		<pathelement location="${ceylon.ant.lib}"/>
+	</path>
+	
+	<typedef resource="com/redhat/ceylon/ant/antlib.xml" classpathref="ant-tasks"/>
+
+	<target name="js">
+		 <ceylon-compile-js 
+		 		executable="${ceylon.executable}"
+	            out="${repo.dir}"
+	            encoding="UTF-8">
+            <moduleset>
+            	<module name="nightprowler.client"/>
+        	</moduleset>
+        </ceylon-compile-js>
+        	
+		<copy todir="${user.repo.dir}">
+			<fileset dir="${repo.dir}" />
+		</copy>
+		<copy todir="${html.dir}">
+			<fileset dir="${repo.dir}" />
+		</copy>
+	</target>
+		
+	<target name="all" depends="js"/>
+</project>
