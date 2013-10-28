@@ -171,7 +171,7 @@ void runServer() {
             }
         },
         serveStaticFileEndPoint("/files/", "./html/"),
-        serveStaticFileEndPoint("/modules/", "./modules/")
+        serveStaticFileEndPoint("/modules/", "./html/modules/")
     };
     
     // starts with default values
@@ -179,7 +179,7 @@ void runServer() {
 }
 
 "Run the module `nightprowler.server`."
-void run() {
+shared void run() {
 	runServer();
 }
 

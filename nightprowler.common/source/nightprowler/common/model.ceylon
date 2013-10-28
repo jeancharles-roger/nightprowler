@@ -1,9 +1,14 @@
 
-"Alias for all model classes."
-shared alias ModelObject => NotPlayedCharacter|Character|Table|Player;
+"Root interface for all model classes."
+shared interface ModelObject 
+of Player | Character | Table | NotPlayedCharacter 
+{
+	shared formal Result accept<Result,Args>(Visitor<Result,Args> visitor, Args arguments);
+}
 
 "Represents a player. It posseses Characters."
 shared class Player(name, login, password, salt = "", characters={}, masteredTables={}) 
+	satisfies ModelObject
 {
 	"Player's name."
 	shared String name;
@@ -26,13 +31,14 @@ shared class Player(name, login, password, salt = "", characters={}, masteredTab
 	"Decription string."
 	shared actual String string = "[Player] " + login + ", " + name;
 
-	shared Result accept<Result,Args>(Visitor<Result,Args> visitor, Args arguments) {
+	shared actual Result accept<Result,Args>(Visitor<Result,Args> visitor, Args arguments) {
 		return visitor.visitPlayer(this, arguments);
 	}
 }
 
 "Represents a table, a group of Characters in a same game. A table is moderated by the master."
 shared class Table(master, name, characters={}, npcs={})
+	satisfies ModelObject
 {
 	
 	"The master's player login."
@@ -50,25 +56,27 @@ shared class Table(master, name, characters={}, npcs={})
 	"Decription string."
 	shared actual String string = "[Table] " + name + ", mastered by " + master;
 
-	shared Result accept<Result,Args>(Visitor<Result,Args> visitor, Args arguments) {
+	shared actual Result accept<Result,Args>(Visitor<Result,Args> visitor, Args arguments) {
 		return visitor.visitTable(this, arguments);
 	}
 
 }
 
 shared class NotPlayedCharacter(name) 
+	satisfies ModelObject
 {
 	shared String name;
 
 	"Decription string."
 	shared actual String string = "[Npc] " + name;
 
-	shared Result accept<Result,Args>(Visitor<Result,Args> visitor, Args arguments) {
+	shared actual Result accept<Result,Args>(Visitor<Result,Args> visitor, Args arguments) {
 		return visitor.visitNotPlayedCharacter(this, arguments);
 	}
 }
 
 shared class Character(player, name)
+	satisfies ModelObject
 {	
 	"The player's login."
 	shared String player;
@@ -97,7 +105,7 @@ shared class Character(player, name)
 		return result;
 	}
 
-	shared Result accept<Result,Args>(Visitor<Result,Args> visitor, Args arguments) {
+	shared actual Result accept<Result,Args>(Visitor<Result,Args> visitor, Args arguments) {
 		return visitor.visitCharacter(this, arguments);
 	}
 }
@@ -130,6 +138,3 @@ shared interface Visitor<out Result, in Args> {
 	shared formal Result visitCharacter(Character character, Args arguments);
 }
 
-shared String toJsonString(ModelObject model) {
-	return "JSON String";
-}
