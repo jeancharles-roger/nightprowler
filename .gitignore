@@ -3,3 +3,5 @@ nightprowler.client/modules
 nightprowler.server/modules
 .idea/workspace.xml
 .idea/uiDesigner.xml
+nightprowler.war/ROOT/WEB-INF/classes
+nightprowler.war/ROOT/js/compiled
