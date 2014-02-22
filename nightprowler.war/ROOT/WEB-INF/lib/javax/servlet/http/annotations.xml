@@ -1,0 +1,7 @@
+<root>
+    <item name='javax.servlet.http.HttpServlet void doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)'>
+        <annotation name='jet.runtime.typeinfo.KotlinSignature'>
+            <val name="value" val="&quot;fun doGet(req: HttpServletRequest, resp: HttpServletResponse): Unit&quot;"/>
+        </annotation>
+    </item>
+</root>

@@ -1,3 +1,5 @@
 nightprowler.common/modules
 nightprowler.client/modules
 nightprowler.server/modules
+.idea/workspace.xml
+.idea/uiDesigner.xml

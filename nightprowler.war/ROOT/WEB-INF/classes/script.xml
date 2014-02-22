@@ -1,0 +1,45 @@
+<modules>
+    <!-- Module script for production -->
+    <module name="nightprowler.server" outputDir="/Users/charlie/Documents/dev/git/nightprowler/nightprowler.war/ROOT/WEB-INF/classes">
+        <sources path="/Users/charlie/Documents/dev/git/nightprowler/nightprowler.server/src/nightprowler/server/main.kt"/>
+        <!-- Classpath -->
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/lib/ant-javafx.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/lib/dt.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/lib/javafx-doclet.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/lib/javafx-mx.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/lib/jconsole.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/lib/sa-jdi.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/lib/tools.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/JObjC.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/charsets.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/deploy.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/htmlconverter.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/javaws.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/jce.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/jfr.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/jfxrt.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/jsse.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/management-agent.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/plugin.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/resources.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/rt.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/ext/dnsns.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/ext/localedata.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/ext/sunec.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar"/>
+        <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/ext/zipfs.jar"/>
+        <!-- Output directory, commented out -->
+        <!-- 
+            <classpath path="/Users/charlie/Documents/dev/git/nightprowler/nightprowler.war/ROOT/WEB-INF/classes"/>
+        -->
+        <classpath path="/Users/charlie/Documents/dev/git/nightprowler/nightprowler.war/ROOT/WEB-INF/lib/kotlin-runtime.jar"/>
+        <classpath path="/Users/charlie/Documents/dev/git/nightprowler/nightprowler.war/ROOT/WEB-INF/lib/servlet-api.jar"/>
+        <!-- Java Source Roots -->
+        <classpath path="/Users/charlie/Documents/dev/git/nightprowler/nightprowler.server/src"/>
+        <!-- External annotations -->
+        <externalAnnotations path= "/Applications/Dev/IntelliJ IDEA 13 CE.app/lib/jdkAnnotations.jar"/>
+        <externalAnnotations path= "/Users/charlie/Library/Application Support/IdeaIC13/Kotlin/kotlinc/lib/kotlin-jdk-annotations.jar"/>
+        <externalAnnotations path= "/Users/charlie/Documents/dev/git/songbook.git/songbook.server/libs"/>
+    </module>
+</modules>
