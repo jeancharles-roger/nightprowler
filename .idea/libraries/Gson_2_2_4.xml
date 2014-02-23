@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gson 2.2.4">
+    <ANNOTATIONS>
+      <root url="file://$PROJECT_DIR$/annotations/Gson 2.2.4" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/nightprowler.war/ROOT/WEB-INF/lib/gson-2.2.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
