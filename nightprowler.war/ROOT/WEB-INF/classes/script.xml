@@ -2,6 +2,7 @@
     <!-- Module script for production -->
     <module name="nightprowler.server" outputDir="/Users/charlie/Documents/dev/git/nightprowler/nightprowler.war/ROOT/WEB-INF/classes">
         <sources path="/Users/charlie/Documents/dev/git/nightprowler/nightprowler.server/src/nightprowler/server/main.kt"/>
+        <sources path="/Users/charlie/Documents/dev/git/nightprowler/nightprowler.server/src/nightprowler/server/model.kt"/>
         <!-- Classpath -->
         <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/lib/ant-javafx.jar"/>
         <classpath path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/lib/dt.jar"/>
@@ -35,11 +36,14 @@
         -->
         <classpath path="/Users/charlie/Documents/dev/git/nightprowler/nightprowler.war/ROOT/WEB-INF/lib/kotlin-runtime.jar"/>
         <classpath path="/Users/charlie/Documents/dev/git/nightprowler/nightprowler.war/ROOT/WEB-INF/lib/servlet-api.jar"/>
+        <classpath path="/Users/charlie/Documents/dev/git/nightprowler/nightprowler.war/ROOT/WEB-INF/lib/gson-2.2.4.jar"/>
         <!-- Java Source Roots -->
         <classpath path="/Users/charlie/Documents/dev/git/nightprowler/nightprowler.server/src"/>
         <!-- External annotations -->
         <externalAnnotations path= "/Applications/Dev/IntelliJ IDEA 13 CE.app/lib/jdkAnnotations.jar"/>
         <externalAnnotations path= "/Users/charlie/Library/Application Support/IdeaIC13/Kotlin/kotlinc/lib/kotlin-jdk-annotations.jar"/>
         <externalAnnotations path= "/Users/charlie/Documents/dev/git/songbook.git/songbook.server/libs"/>
+        <externalAnnotations path= "/Users/charlie/Documents/dev/git/nightprowler/annotations/Gson 2.2.4"/>
+        <externalAnnotations path= "/Users/charlie/Documents/dev/git/nightprowler/annotations/Servlet api"/>
     </module>
 </modules>

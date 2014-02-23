@@ -5,11 +5,11 @@
          version="2.5">
 
     <servlet>
-        <servlet-name>Server</servlet-name>
-        <servlet-class>nightprowler.server.Server</servlet-class>
+        <servlet-name>CharacterServlet</servlet-name>
+        <servlet-class>nightprowler.server.CharacterServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Server</servlet-name>
-        <url-pattern>/rest</url-pattern>
+        <servlet-name>CharacterServlet</servlet-name>
+        <url-pattern>/character/*</url-pattern>
     </servlet-mapping>
 </web-app>
