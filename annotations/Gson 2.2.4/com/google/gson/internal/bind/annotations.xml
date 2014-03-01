@@ -2,10 +2,7 @@
     <item name='com.google.gson.internal.bind.TypeAdapters BIG_DECIMAL'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
-    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter value(java.lang.Number)'>
-        <annotation name='org.jetbrains.annotations.NotNull'/>
-    </item>
-    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter nullValue()'>
+    <item name='com.google.gson.internal.bind.TypeAdapters com.google.gson.TypeAdapterFactory newFactory(java.lang.Class&lt;TT&gt;, com.google.gson.TypeAdapter&lt;TT&gt;)'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.TypeAdapters LOCALE_FACTORY'>
@@ -29,9 +26,6 @@
     <item name='com.google.gson.internal.bind.TypeAdapters INET_ADDRESS'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
-    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter beginArray()'>
-        <annotation name='org.jetbrains.annotations.NotNull'/>
-    </item>
     <item name='com.google.gson.internal.bind.TypeAdapters BIG_INTEGER'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
@@ -47,16 +41,13 @@
     <item name='com.google.gson.internal.bind.TypeAdapters JSON_ELEMENT'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
+    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter value(boolean)'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
     <item name='com.google.gson.internal.bind.TimeTypeAdapter java.lang.Object read(com.google.gson.stream.JsonReader) 0'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.TypeAdapters UUID_FACTORY'>
-        <annotation name='org.jetbrains.annotations.NotNull'/>
-    </item>
-    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter value(double)'>
-        <annotation name='org.jetbrains.annotations.NotNull'/>
-    </item>
-    <item name='com.google.gson.internal.bind.TypeAdapters com.google.gson.TypeAdapterFactory newTypeHierarchyFactory(java.lang.Class&lt;TT&gt;, com.google.gson.TypeAdapter&lt;TT&gt;)'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.ArrayTypeAdapter FACTORY'>
@@ -65,13 +56,7 @@
     <item name='com.google.gson.internal.bind.ReflectiveTypeAdapterFactory com.google.gson.TypeAdapter&lt;T&gt; create(com.google.gson.Gson, com.google.gson.reflect.TypeToken&lt;T&gt;) 1'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
-    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter endArray()'>
-        <annotation name='org.jetbrains.annotations.NotNull'/>
-    </item>
-    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter value(java.lang.String)'>
-        <annotation name='org.jetbrains.annotations.NotNull'/>
-    </item>
-    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter value(long)'>
+    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter beginObject()'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.TypeAdapters STRING_BUILDER_FACTORY'>
@@ -107,6 +92,9 @@
     <item name='com.google.gson.internal.bind.TypeAdapters LONG'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
+    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter value(long)'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
     <item name='com.google.gson.internal.bind.TypeAdapters CALENDAR'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
@@ -116,7 +104,13 @@
     <item name='com.google.gson.internal.bind.TypeAdapters BOOLEAN'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
-    <item name='com.google.gson.internal.bind.TypeAdapters com.google.gson.TypeAdapterFactory newFactory(java.lang.Class&lt;TT&gt;, java.lang.Class&lt;TT&gt;, com.google.gson.TypeAdapter&lt;? super TT&gt;)'>
+    <item name='com.google.gson.internal.bind.TypeAdapters com.google.gson.TypeAdapterFactory newFactory(com.google.gson.reflect.TypeToken&lt;TT&gt;, com.google.gson.TypeAdapter&lt;TT&gt;)'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
+    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter endObject()'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
+    <item name='com.google.gson.internal.bind.TypeAdapters com.google.gson.TypeAdapterFactory newEnumTypeHierarchyFactory()'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.ArrayTypeAdapter java.lang.Object read(com.google.gson.stream.JsonReader) 0'>
@@ -128,9 +122,6 @@
     <item name='com.google.gson.internal.bind.TypeAdapters CHARACTER'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
-    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter name(java.lang.String)'>
-        <annotation name='org.jetbrains.annotations.NotNull'/>
-    </item>
     <item name='com.google.gson.internal.bind.TypeAdapters com.google.gson.TypeAdapterFactory newFactoryForMultipleTypes(java.lang.Class&lt;TT&gt;, java.lang.Class&lt;? extends TT&gt;, com.google.gson.TypeAdapter&lt;? super TT&gt;)'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
@@ -140,7 +131,13 @@
     <item name='com.google.gson.internal.bind.TypeAdapters INTEGER'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
+    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter name(java.lang.String)'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
     <item name='com.google.gson.internal.bind.TypeAdapters SHORT'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
+    <item name='com.google.gson.internal.bind.TypeAdapters com.google.gson.TypeAdapterFactory newTypeHierarchyFactory(java.lang.Class&lt;TT&gt;, com.google.gson.TypeAdapter&lt;TT&gt;)'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.TypeAdapters CHARACTER_FACTORY'>
@@ -161,6 +158,9 @@
             <val name="value" val="{org.jetbrains.kannotator.controlFlow.builder.analysis.NullabilityKey.class}"/>
         </annotation>
     </item>
+    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter nullValue()'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
     <item name='com.google.gson.internal.bind.TimeTypeAdapter void write(com.google.gson.stream.JsonWriter, java.sql.Time) 0'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
@@ -179,13 +179,16 @@
     <item name='com.google.gson.internal.bind.TypeAdapters BYTE_FACTORY'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
-    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter beginObject()'>
-        <annotation name='org.jetbrains.annotations.NotNull'/>
-    </item>
     <item name='com.google.gson.internal.bind.ObjectTypeAdapter FACTORY'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.TimeTypeAdapter FACTORY'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
+    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter value(double)'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
+    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter beginArray()'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.TypeAdapters LOCALE'>
@@ -197,19 +200,16 @@
     <item name='com.google.gson.internal.bind.TypeAdapters BOOLEAN_AS_STRING'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
-    <item name='com.google.gson.internal.bind.TypeAdapters com.google.gson.TypeAdapterFactory newEnumTypeHierarchyFactory()'>
-        <annotation name='org.jetbrains.annotations.NotNull'/>
-    </item>
     <item name='com.google.gson.internal.bind.TypeAdapters URL_FACTORY'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
-    <item name='com.google.gson.internal.bind.TypeAdapters com.google.gson.TypeAdapterFactory newFactory(com.google.gson.reflect.TypeToken&lt;TT&gt;, com.google.gson.TypeAdapter&lt;TT&gt;)'>
+    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter endArray()'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
+    <item name='com.google.gson.internal.bind.TypeAdapters com.google.gson.TypeAdapterFactory newFactory(java.lang.Class&lt;TT&gt;, java.lang.Class&lt;TT&gt;, com.google.gson.TypeAdapter&lt;? super TT&gt;)'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.TypeAdapters ENUM_FACTORY'>
-        <annotation name='org.jetbrains.annotations.NotNull'/>
-    </item>
-    <item name='com.google.gson.internal.bind.TypeAdapters com.google.gson.TypeAdapterFactory newFactory(java.lang.Class&lt;TT&gt;, com.google.gson.TypeAdapter&lt;TT&gt;)'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.TypeAdapters NUMBER'>
@@ -222,6 +222,9 @@
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.TypeAdapters STRING_BUILDER'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
+    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter value(java.lang.String)'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.TypeAdapters STRING_BUFFER'>
@@ -239,6 +242,9 @@
     <item name='com.google.gson.internal.bind.TypeAdapters FLOAT'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
+    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter value(java.lang.Number)'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
     <item name='com.google.gson.internal.bind.TypeAdapters STRING'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
@@ -246,9 +252,6 @@
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.DateTypeAdapter java.lang.Object read(com.google.gson.stream.JsonReader) 0'>
-        <annotation name='org.jetbrains.annotations.NotNull'/>
-    </item>
-    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter endObject()'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.TypeAdapters BIT_SET_FACTORY'>
@@ -264,9 +267,6 @@
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.TimeTypeAdapter java.sql.Time read(com.google.gson.stream.JsonReader) 0'>
-        <annotation name='org.jetbrains.annotations.NotNull'/>
-    </item>
-    <item name='com.google.gson.internal.bind.JsonTreeWriter com.google.gson.stream.JsonWriter value(boolean)'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
     <item name='com.google.gson.internal.bind.SqlDateTypeAdapter FACTORY'>

@@ -8,8 +8,16 @@
         <servlet-name>CharacterServlet</servlet-name>
         <servlet-class>nightprowler.server.CharacterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListServlet</servlet-name>
+        <servlet-class>nightprowler.server.ListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CharacterServlet</servlet-name>
         <url-pattern>/character/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListServlet</servlet-name>
+        <url-pattern>/character</url-pattern>
     </servlet-mapping>
 </web-app>

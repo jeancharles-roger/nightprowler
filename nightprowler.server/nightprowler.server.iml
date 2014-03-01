@@ -12,6 +12,7 @@
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
     <orderEntry type="library" name="Servlet api" level="project" />
     <orderEntry type="library" name="Gson 2.2.4" level="project" />
+    <orderEntry type="library" name="Mongo 2.9.3" level="project" />
   </component>
 </module>
 

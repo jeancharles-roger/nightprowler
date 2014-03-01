@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Mongo 2.9.3">
+    <ANNOTATIONS>
+      <root url="file://$PROJECT_DIR$/annotations" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/nightprowler.war/ROOT/WEB-INF/lib/mongo-java-driver-2.9.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/nightprowler.war/ROOT/WEB-INF/lib/mongo-java-driver-2.9.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

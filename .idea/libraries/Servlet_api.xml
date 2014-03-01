@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Servlet api">
     <ANNOTATIONS>
-      <root url="file://$PROJECT_DIR$/annotations/Servlet api" />
+      <root url="file://$PROJECT_DIR$/annotations" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/nightprowler.war/ROOT/WEB-INF/lib/servlet-api.jar!/" />

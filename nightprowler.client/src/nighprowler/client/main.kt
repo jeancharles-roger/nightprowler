@@ -65,7 +65,8 @@ fun selectTab(tabs: HTMLElement, tab: HTMLElement) {
         if ( request.status == HttpResponseStatus.OK && response != null ) {
             val character = characterFromJson(response)
             content.innerHTML = """
-                <b>${character.name}</b>: ${character.description}
+                <h3>${character.name}</h3>
+                <p>${character.description}</p>
             """
         } else {
             content.innerHTML = "Failed to request '${url}'."
@@ -87,4 +88,5 @@ fun main(args: Array<String>) {
             }
         }
     }
+
 }
