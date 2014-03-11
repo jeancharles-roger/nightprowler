@@ -9,28 +9,35 @@ import org.w3c.dom.NodeList
 import js.dom.html.HTMLElement
 import js.dom.html.HTMLCollection
 
-public native fun HTMLDocument.querySelector(selector: String): HTMLElement? {
-    // this function is native, it wont be called
-    return null as HTMLElement?
-}
+native fun HTMLDocument.querySelector(selector: String): HTMLElement? = js.noImpl
+native fun HTMLDocument.querySelectorAll(selector: String): NodeList = js.noImpl
 
-public native fun HTMLDocument.querySelectorAll(selector: String): NodeList {
-    // this function is native, it wont be called
-    return null as NodeList
-}
+native fun HTMLElement.querySelector(selector: String): HTMLElement? = js.noImpl
+native fun HTMLElement.querySelectorAll(selector: String): NodeList = js.noImpl
 
-public native fun HTMLElement.querySelector(selector: String): HTMLElement? {
-    // this function is native, it wont be called
-    return null as HTMLElement?
-}
-
-public native fun HTMLElement.querySelectorAll(selector: String): NodeList {
-    // this function is native, it wont be called
-    return null as NodeList
-}
-
-public fun String.remove(fragment:String): String {
+fun String.remove(fragment:String): String {
     val index = this.indexOf(fragment)
     if ( index < 0 ) return this;
     return this.substring(0, index) + this.substring(index+fragment.length)
 }
+
+native trait JsonArray<K,V>:Iterable<V> {
+    val length:Int
+    fun get(index: K):V
+    fun set(index: K):V
+
+    fun forEach(block:(element:V, index:K)->Unit)
+    fun every(block:(element:V, index:K)->Boolean)
+
+    fun find(block:(element:V, index:K)->Boolean):V
+    fun findIndex(block:(element:V, index:K)->Boolean):K
+
+    fun map<T>(block: (element:V, index:K)->T): JsonArray<K,T>
+
+    fun sort(compare:(one:V, other:V)->Int)
+}
+
+native object Object {
+    fun keys(obj: Any?): JsonArray<Int, String> = noImpl
+}
+

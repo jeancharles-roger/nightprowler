@@ -9,6 +9,7 @@ import com.mongodb.Mongo
 import com.mongodb.DBRef
 import org.bson.BSON
 import org.bson.types.ObjectId
+import com.mongodb.util.JSON
 
 class CharacterServlet : HttpServlet() {
 
@@ -22,14 +23,13 @@ class CharacterServlet : HttpServlet() {
             resp.setCharacterEncoding("UTF-8")
 
             val db = client.getDB("jdr")
-            //val character = getCharacter(db, id)
             val found = DBRef(db, CharacterCollection, ObjectId(id)).fetch()
             if ( found != null ) {
                 resp.setStatus(HttpServletResponse.SC_OK);
                 resp.setCharacterEncoding("UTF-8")
                 resp.setContentType("application/json")
                 val writer = resp.getWriter()
-                writer.append(found.toString())
+                writer.append(JSON.serialize(found))
 
             } else {
                 resp.setStatus(HttpServletResponse.SC_NOT_FOUND);

@@ -12,14 +12,23 @@ import js.dom.html.HTMLDocument
 import js.core.http.XMLHttpRequest
 import js.core.http.HttpResponseStatus
 import nightprowler.client.Character
+import nightprowler.client.examples
 
 /**
- * Created by charlie on 22/02/2014.
+ * Toggle given class for element.
  */
-
-fun characterFromJson(json: String): Character {
-    val character:Character = js.JSON.parse(json)
-    return character
+fun HTMLElement.toggleClass(toggleClassName: String) {
+    if ( className.contains(toggleClassName) ) {
+        // removes class
+        className = className.remove(toggleClassName)
+    } else {
+        // adds class
+        if ( className.size == 0 ) {
+            className = toggleClassName
+        } else {
+            className += " " + toggleClassName
+        }
+    }
 }
 
 
@@ -29,32 +38,19 @@ fun characterFromJson(json: String): Character {
 fun selectTab(tabs: HTMLElement, tab: HTMLElement) {
     val old = tabs.querySelector(".selected")
 
-    console.log("Selected '${tab.id}' (old ${old}).")
-
     // deselects old header (if any)
-    if ( old != null ) {
-        console.log("Class name is ${old.className}.")
-        old.className = old.className.remove("selected")
-        console.log("Class name is now ${old.className}.")
-    }
+    old?.toggleClass("selected")
 
     // selects clicked header
-    if ( tab.className.size > 0 ) {
-        tab.className += " selected"
-    } else {
-        tab.className = "selected"
-    }
+    tab.toggleClass("selected")
 
     // adds pending spinner
     val content = tabs.querySelector(".content")
     if ( content == null ) return;
 
-    console.log("Current content ${content}")
-
     content.innerHTML = "<p>Pending.</p>"
 
     val url = "character" + tab.id
-    console.log("Query address '${url}")
 
     val request = XMLHttpRequest();
     request.open("GET", url, true)
@@ -63,11 +59,18 @@ fun selectTab(tabs: HTMLElement, tab: HTMLElement) {
         val response = request.response
         console.log("Request status ${request.status} and response ${response}")
         if ( request.status == HttpResponseStatus.OK && response != null ) {
-            val character = characterFromJson(response)
-            content.innerHTML = """
-                <h3>${character.name}</h3>
-                <p>${character.description}</p>
-            """
+            val character = Character(response)
+
+            val contentBuilder = StringBuilder()
+            contentBuilder.append("<b>${character.name}</b>")
+            contentBuilder.append("<p>${character.description}</p>")
+            contentBuilder.append("<table>")
+            character.attributes.forEach {  element, index ->
+                contentBuilder.append("<tr><td>${element}</td><td>${index}</td></tr>")
+            }
+            contentBuilder.append("</table>")
+
+            content.innerHTML = contentBuilder.toString()
         } else {
             content.innerHTML = "Failed to request '${url}'."
         }
@@ -77,16 +80,27 @@ fun selectTab(tabs: HTMLElement, tab: HTMLElement) {
 
 fun main(args: Array<String>) {
     // Load tabs
+    console.log("Arguments: ${args}")
+
     val tabs = document.querySelector("#tabs")
     if ( tabs != null ) {
         val tabList = document.querySelectorAll(".tab .page")
         for (i in 0..tabList.length-1) {
             val tab = tabList.item(i)
             if ( tab is HTMLElement ) {
-                console.log("Tab is a HTMLElement.")
                 tab.onclick = { selectTab(tabs, tab) }
             }
         }
     }
 
+    /*
+    for ( character in examples() ) {
+        console.log("--")
+        console.log(character)
+        val json = character.toJson()
+        console.log(json)
+        val parsed: MutableMap<String, Int> = js.JSON.parse(json)
+        console.log(parsed)
+    }
+    */
 }

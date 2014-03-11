@@ -20,8 +20,8 @@ return """
 
 fun htmlEnd(): String {
     return """
-        <script type="text/javascript" src="js/kotlin.js"></script>
-        <script type="text/javascript" src="js/compiled/nightprowler.client.js"></script>
+        <script src="js/kotlin.js"></script>
+        <script src="js/compiled/nightprowler.client.js"></script>
         </body>
         </html>
     """

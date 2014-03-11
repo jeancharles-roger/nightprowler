@@ -470,6 +470,9 @@
     <item name='com.mongodb.DBRefBase DBRefBase(com.mongodb.DB, java.lang.String, java.lang.Object) 1'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
+    <item name='com.mongodb.DBRefBase java.lang.String getRef()'>
+        <annotation name='org.jetbrains.annotations.NotNull'/>
+    </item>
     <item name='com.mongodb.DBTCPConnector DBTCPConnector(com.mongodb.Mongo, com.mongodb.ServerAddress) 0'>
         <annotation name='org.jetbrains.annotations.NotNull'/>
     </item>
