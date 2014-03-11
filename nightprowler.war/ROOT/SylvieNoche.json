@@ -1,0 +1,14 @@
+{
+    "name"="Sylvie Noche",
+    "subtitle"="La journaliste trop curieuse",
+    "description"= {
+        "label" = "Description",
+        "value" = "<p>« Le baron de Neuville ? Vous ne trouvez pas qu’il passe beaucoup de temps avec la préceptrice de ses enfants ? »</p> <p>En tout cas, si vous voulez d’autres informations du même acabit, il vous suffit d’ouvrir un exemplaire du Petit Mondain. Parmi les contributeurs de cet hebdomadaire, Sylvie Noche est la plus virulente. Elle sait où trouver les informations qui feront sensation et les failles chez ceux que l’on pensait irréprochables, ce qui lui attire l’admiration de Henri Colmes, son rédacteur en chef.</p> <p>Qui se méfierait de cette jeune fille au visage angélique ?</p> <p>Oui, probablement, les nombreuses personnalités en vue qui se sont déjà faites avoir. Pas étonnant dans ces conditions que cette journaliste se soit attirée de nombreuses inimitiés. Sylvie ne recule devant rien pour un scoop, quitte à enfreindre la Loi. Après tout, le public a le droit de tout savoir ! En plus d’une habileté naturelle pour fourrer son nez un peu partout, Sylvie a accumulé au fil de sa carrière un grand nombre de relations avec certains membres de la haute société et les parasites mondains qui gravitent autour d’eux. Le genre de contacts qui peuvent toujours être utiles. Surtout qu’ils peuvent pas lui refuser grand-chose.</p>"
+    }
+    "attributes" = {
+        "label" = "Attributs",
+        "value" = {
+
+        }
+    }
+}

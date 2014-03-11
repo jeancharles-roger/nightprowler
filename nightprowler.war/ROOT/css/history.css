@@ -1,0 +1,29 @@
+/* Css for history bubbles */
+
+.history {
+    margin: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;
+
+    display:inline-block;
+
+    border-radius: 10px;
+/*
+    border-style: solid;
+    border-width: 1px;
+*/
+}
+
+.message {
+    color: black;
+    background-color: rgb(200, 200, 200);
+}
+
+.action {
+    color: white;
+    background-color: rgb(153, 153, 153);
+}
+
+.change {
+    color: white;
+    background-color: rgb(31, 141, 214);
+}
